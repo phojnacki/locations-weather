@@ -23,7 +23,7 @@ public class Location {
     public boolean equals(Object other) {
         if (this == other) return true;
         if (other == null || getClass() != other.getClass()) return false;
-        User location = (User) other;
+        Location location = (Location) other;
         return getName().equals(location.getName());
     }
 

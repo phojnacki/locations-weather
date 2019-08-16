@@ -1,7 +1,7 @@
 package com.demo.controller;
 
-import com.demo.domain.User;
-import com.demo.service.UserService;
+import com.demo.domain.Location;
+import com.demo.service.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
@@ -12,26 +12,26 @@ import reactor.core.publisher.Mono;
 class LocationController {
 
     @Autowired
-    private UserService userService;gg
+    private LocationService locationService;
 
     @PostMapping(value = "/add")
-    Mono<User> create(@RequestBody Mono<User> user) {
-        return userService.add(user);
+    Mono<Location> create(@RequestBody Mono<Location> location) {
+        return locationService.add(location);
     }
 
     @GetMapping("/list")
-    Flux<User> list() {
-        return userService.findAll();
+    Flux<Location> list() {
+        return locationService.findAll();
     }
 
     @GetMapping("/{id}")
-    Mono<User> findById(@PathVariable Long id) {
-        return userService.findById(id);
+    Mono<Location> findById(@PathVariable Long id) {
+        return locationService.findById(id);
     }
 
     @PostMapping(value = "/update/{id}")
-    Mono<User> update(@PathVariable Long id,@RequestBody Mono<User> user){
-        return userService.update(id,user);
+    Mono<Location> update(@PathVariable Long id,@RequestBody Mono<Location> location){
+        return locationService.update(id,location);
     }
 
 }

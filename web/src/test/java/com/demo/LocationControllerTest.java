@@ -1,7 +1,7 @@
 package com.demo.controller;
 
-import com.demo.domain.User;
-import com.demo.service.UserService;
+import com.demo.domain.Location;
+import com.demo.service.LocationService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,32 +16,32 @@ import reactor.core.publisher.Mono;
 public class LocationControllerTest {
 
     @Autowired
-    private UserService userService;
+    private LocationService locationService;
 
     @Autowired
     private WebTestClient webClient;
 
     @Test
     public void testCreate() {
-        User user = new User();
-        user.setName("abcd");
+        Location location = new Location();
+        location.setName("abcd");
         this.webClient.post().uri("/location/add")
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
-                .body(Mono.just(user),User.class).exchange()
+                .body(Mono.just(location),Location.class).exchange()
                 .expectStatus().isOk();
-//                .expectBody(User.class).isEqualTo(user);
+//                .expectBody(Location.class).isEqualTo(location);
 //                .consumeWith(result -> assertEquals("Response result","abcd", result.getResponseBody().getName()));
     }
 
     @Test
     public void testFindById() {
-        User user = new User();
-        user.setName("findById");
-        User newUser = userService.add(Mono.just(user)).block();
-        this.webClient.get().uri("/location/{id}",newUser.getId())
+        Location location = new Location();
+        location.setName("findById");
+        Location newLocation = locationService.add(Mono.just(location)).block();
+        this.webClient.get().uri("/location/{id}",newLocation.getId())
                 .exchange()
                 .expectStatus().isOk()
-                .expectBody(User.class).isEqualTo(newUser);
+                .expectBody(Location.class).isEqualTo(newLocation);
     }
 
     @Test

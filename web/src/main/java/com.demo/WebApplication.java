@@ -1,6 +1,6 @@
 package com.demo;
 
-import com.demo.router.UserRouter;
+import com.demo.router.LocationRouter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -16,7 +16,7 @@ public class WebApplication {
 	}
 
 	@Bean
-	public RouterFunction<ServerResponse> monoRouterFunction(UserRouter userRouter) {
-		return userRouter.routes();
+	public RouterFunction<ServerResponse> monoRouterFunction(LocationRouter locationRouter) {
+		return locationRouter.routes();
 	}
 }

@@ -1,7 +1,7 @@
 package com.demo.router;
 
-import com.demo.domain.User;
-import com.demo.service.UserService;
+import com.demo.domain.Location;
+import com.demo.service.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.reactive.function.server.ServerResponse;
 
@@ -24,10 +24,10 @@ import reactor.core.publisher.Mono;
 public class LocationRouter {
 
     @Autowired
-    private UserService userService;
+    private LocationService locationService;
 
     public RouterFunction<ServerResponse> routes() {
-        return nest(path("/user"),
+        return nest(path("/location"),
                 route(GET("/list").and(accept(APPLICATION_JSON)), this::listAll)
                         .andRoute(GET("/{id}").and(accept(APPLICATION_JSON)), this::findById)
                         .andRoute(POST("/add").and(accept(APPLICATION_JSON)), this::add)
@@ -36,20 +36,20 @@ public class LocationRouter {
 
     private Mono<ServerResponse> findById(ServerRequest req){
         Long id = Long.valueOf(req.pathVariable("id"));
-        return ok().body(userService.findById(id),User.class);
+        return ok().body(locationService.findById(id),Location.class);
     }
 
     private Mono<ServerResponse> listAll(ServerRequest req) {
-        return ok().body(userService.findAll(), User.class);
+        return ok().body(locationService.findAll(), Location.class);
     }
 
     private Mono<ServerResponse> add(ServerRequest req) {
-        return ok().body(userService.add(req.bodyToMono(User.class)), User.class);
+        return ok().body(locationService.add(req.bodyToMono(Location.class)), Location.class);
     }
 
     private Mono<ServerResponse> update(ServerRequest req) {
         Long id = Long.valueOf(req.pathVariable("id"));
-        return ok().body(userService.update(id,req.bodyToMono(User.class)), User.class);
+        return ok().body(locationService.update(id,req.bodyToMono(Location.class)), Location.class);
     }
 
 }

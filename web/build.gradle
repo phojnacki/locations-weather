@@ -1,11 +1,9 @@
 buildscript {
 	ext {
-		springBootVersion = '2.0.0.M3'
+		springBootVersion = '2.1.7.RELEASE'
 	}
 	repositories {
 		mavenCentral()
-		maven { url "https://repo.spring.io/snapshot" }
-		maven { url "https://repo.spring.io/milestone" }
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
@@ -30,23 +28,26 @@ javadoc {
 
 repositories {
 	mavenCentral()
-	maven { url "https://repo.spring.io/snapshot" }
-	maven { url "https://repo.spring.io/milestone" }
 }
 
 
+apply plugin: 'java'
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-webflux')
 	compileOnly('org.projectlombok:lombok')
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	compile('org.springframework.boot:spring-boot-starter-actuator')
-	compile('org.projectreactor:reactor-spring:1.0.1.RELEASE')
 	compile('com.h2database:h2:1.4.196')
-	compile 'org.springframework.kafka:spring-kafka:2.2.3.RELEASE'
+    compile group: 'io.projectreactor.ipc', name: 'reactor-netty', version: '0.7.11.RELEASE'
+    compile 'org.springframework.kafka:spring-kafka:2.2.3.RELEASE'
+    compile group: 'org.projectreactor', name: 'reactor-spring', version: '1.0.0.RELEASE'
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile('io.projectreactor:reactor-test')
 }
 
-task wrapper(type: Wrapper) {
-	gradleVersion = "4.0"
+
+
+wrapper {
+	gradleVersion = '5.6'
+	distributionUrl = distributionUrl.replace("bin", "all")
 }

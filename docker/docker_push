@@ -8,7 +8,7 @@ if [ -z "$IMAGE_VERSION" ]; then
   exit 1
 fi
 
-echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_LOCATIONNAME" --password-stdin
 TARGET="$BASE_IMAGE:$IMAGE_VERSION"
 docker tag "$BASE_IMAGE" "$TARGET"
 docker push "$TARGET"
