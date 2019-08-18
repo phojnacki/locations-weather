@@ -1,0 +1,50 @@
+buildscript {
+	ext {
+		springBootVersion = '2.0.0.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+		maven { url "https://repo.spring.io/snapshot" }
+		maven { url "https://repo.spring.io/milestone" }
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+group 'com.demo.consumer'
+version '0.0.1-SNAPSHOT'
+
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+
+
+repositories {
+	mavenCentral()
+	maven { url "https://repo.spring.io/snapshot" }
+	maven { url "https://repo.spring.io/milestone" }
+}
+
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-webflux')
+	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	compile('org.projectlombok:lombok')
+	compile "org.springframework.kafka:spring-kafka"
+	compile "io.projectreactor.ipc:reactor-netty"
+	compile 'javax.xml.bind:jaxb-api:2.3.0'
+	compile 'org.javassist:javassist:3.23.1-GA'
+	runtime 'com.h2database:h2:1.4.199'
+	compile group: 'org.json', name: 'json', version: '20190722'
+	runtime('org.springframework.boot:spring-boot-devtools')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+	testCompile 'io.projectreactor:reactor-test'
+	annotationProcessor 'org.projectlombok:lombok:1.18.8'
+}
+
+repositories {
+	mavenCentral()
+}
