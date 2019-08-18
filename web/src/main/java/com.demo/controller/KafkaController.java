@@ -15,6 +15,7 @@ import java.util.UUID;
 @RequestMapping(value = "/kafka")
 public class KafkaController {
 
+
     private final Producer producer;
 
     @Autowired
