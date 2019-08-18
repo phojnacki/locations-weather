@@ -21,14 +21,14 @@ public class HttpServerConfig {
         this.environment = environment;
     }
 
-    @Bean
-    public HttpServer httpServer(RouterFunction<?> routerFunction) {
-        HttpHandler httpHandler = RouterFunctions.toHttpHandler(routerFunction);
-        ReactorHttpHandlerAdapter adapter = new ReactorHttpHandlerAdapter(httpHandler);
-        HttpServer server = HttpServer.create(
-                environment.getProperty("server.address"),
-                Integer.valueOf(environment.getProperty("server.port")));
-        server.newHandler(adapter);
-        return server;
-    }
+//    @Bean
+//    public HttpServer httpServer(RouterFunction<?> routerFunction) {
+//        HttpHandler httpHandler = RouterFunctions.toHttpHandler(routerFunction);
+//        ReactorHttpHandlerAdapter adapter = new ReactorHttpHandlerAdapter(httpHandler);
+//        HttpServer server = HttpServer.create(
+//                environment.getProperty("server.address"),
+//                Integer.valueOf(environment.getProperty("server.port")));
+//        server.newHandler(adapter);
+//        return server;
+//    }
 }
