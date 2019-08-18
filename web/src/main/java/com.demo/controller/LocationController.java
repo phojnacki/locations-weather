@@ -9,6 +9,7 @@ import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("/location")
+public
 class LocationController {
 
     @Autowired

@@ -1,13 +1,22 @@
 package com.demo;
 
+import com.demo.domain.Location;
 import com.demo.router.LocationRouter;
+import org.apache.kafka.clients.producer.ProducerConfig;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.kafka.core.DefaultKafkaProducerFactory;
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.kafka.core.ProducerFactory;
+import org.springframework.kafka.support.serializer.JsonSerializer;
 import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.ServerResponse;
 
-// remove @SpringBootApplication and @ComponentScan, replace with @EnableAutoConfiguration
+import java.util.HashMap;
+import java.util.Map;
+
 @SpringBootApplication
 public class WebApplication {
 
@@ -19,4 +28,19 @@ public class WebApplication {
 	public RouterFunction<ServerResponse> monoRouterFunction(LocationRouter locationRouter) {
 		return locationRouter.routes();
 	}
+
+	@Bean
+	public ProducerFactory<String, Location> greetingProducerFactory() {
+		Map<String, Object> configProps = new HashMap<>();
+		configProps.put(
+				ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,
+				JsonSerializer.class);
+		return new DefaultKafkaProducerFactory<>(configProps);
+	}
+
+	@Bean
+	public KafkaTemplate<String, Location> greetingKafkaTemplate() {
+		return new KafkaTemplate<>(greetingProducerFactory());
+	}
+
 }

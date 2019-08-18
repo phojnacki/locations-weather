@@ -1,4 +1,4 @@
-package com.rahul.kafkaspringboot.services;
+package com.demo.kafka;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +11,10 @@ public class Producer {
     private static final String TOPIC = "locations";
 
     @Autowired
-    private KafkaTemplate<String,String> kafkaTemplate;
+    private KafkaTemplate<String, String> kafkaTemplate;
 
-    public void sendMessage(String message){
-        logger.info(String.format("$$ -> Producing message --> %s",message));
-        this.kafkaTemplate.send(TOPIC,message);
+    public void sendMessage(String message) {
+        logger.info(String.format("$$ -> Producing message --> %s", message));
+        this.kafkaTemplate.send(TOPIC, message);
     }
 }
