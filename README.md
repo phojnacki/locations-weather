@@ -1,5 +1,12 @@
 # Capsilon demo
 
+
+## Build: 
+
+```
+buildAll.cmd
+```
+
 ## Uruchomienie: 
 
 ```
@@ -13,7 +20,7 @@ runApp2.cmd
 ```
 
 
-# Test:
+## Test:
 
 ```
 POST http://127.0.0.1:9080/kafka/publish?cityName=Cracow&countryCode=PL
