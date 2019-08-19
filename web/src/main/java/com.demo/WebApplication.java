@@ -22,18 +22,5 @@ public class WebApplication {
 		SpringApplication.run(WebApplication.class, args);
 	}
 
-//	@Bean
-//	public ProducerFactory<String, Location> greetingProducerFactory() {
-//		Map<String, Object> configProps = new HashMap<>();
-//		configProps.put(
-//				ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,
-//				JsonSerializer.class);
-//		return new DefaultKafkaProducerFactory<>(configProps);
-//	}
-//
-//	@Bean
-//	public KafkaTemplate<String, Location> greetingKafkaTemplate() {
-//		return new KafkaTemplate<>(greetingProducerFactory());
-//	}
 
 }
