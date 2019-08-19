@@ -1,12 +1,6 @@
 # Capsilon demo
 
 
-## Build: 
-
-```
-buildAll.cmd
-```
-
 ## Uruchomienie: 
 
 ```
