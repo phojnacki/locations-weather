@@ -1,17 +1,22 @@
-# capsilon demo
+# Capsilon demo
 
-uruchomienie: 
+## Uruchomienie: 
 
+```
 runDocker.cmd
+```
+```
 runApp1.cmd
+```
+```
 runApp2.cmd
+```
 
 
+# test:
 
-test:
-
-POST http://127.0.0.1:9080/kafka/publish?cityName=Cracow&countryCode=PL
-POST http://127.0.0.1:9080/kafka/publish?cityName=Lisbona&countryCode=PT
+# POST http://127.0.0.1:9080/kafka/publish?cityName=Cracow&countryCode=PL
+# POST http://127.0.0.1:9080/kafka/publish?cityName=Lisbona&countryCode=PT
 POST http://127.0.0.1:9080/kafka/publish?cityName=Dover&countryCode=EN
 
 -> zwraca requestId
